@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+const authRoutes = require('./routes/authRoutes');
 const { notFoundHandler, errorHandler } = require('./middleware/errorHandler');
+
 
 const app = express();
 
@@ -25,6 +27,10 @@ app.get('/api/v1', (req, res) => {
     message: 'Welcome to CodeAlpha Social Media API v1',
   });
 });
+
+// Mount Routes
+app.use('/api/v1/auth', authRoutes);
+
 
 // 404 & Centralized Error Handlers (must be registered LAST)
 app.use(notFoundHandler);
