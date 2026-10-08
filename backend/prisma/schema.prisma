@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(uuid())
+  username     String    @unique
+  name         String
+  email        String    @unique
+  passwordHash String
+  bio          String?   @default("")
+  avatarUrl    String?   @default("https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200")
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  // Relationships
+  posts        Post[]
+  comments     Comment[]
+  likes        Like[]
+
+  // Self-referential Many-to-Many via Follow model
+  following    Follow[]  @relation("UserFollows")
+  followers    Follow[]  @relation("UserFollowedBy")
+
+  @@map("social_users")
+}
+
+model Post {
+  id        String    @id @default(uuid())
+  content   String
+  imageUrl  String?
+  authorId  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  // Relationships
+  author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  comments  Comment[]
+  likes     Like[]
+
+  @@map("social_posts")
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  authorId  String
+  postId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@map("social_comments")
+}
+
+model Like {
+  id        String   @id @default(uuid())
+  userId    String
+  postId    String
+  createdAt DateTime @default(now())
+
+  // Relationships
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  // A user can only like a given post once
+  @@unique([userId, postId])
+  @@map("social_likes")
+}
+
+model Follow {
+  id          String   @id @default(uuid())
+  followerId  String   // The user initiating the follow
+  followingId String   // The user being followed
+  createdAt   DateTime @default(now())
+
+  // Relationships
+  follower    User     @relation("UserFollows", fields: [followerId], references: [id], onDelete: Cascade)
+  following   User     @relation("UserFollowedBy", fields: [followingId], references: [id], onDelete: Cascade)
+
+  // A user can only follow another user once
+  @@unique([followerId, followingId])
+  @@map("social_follows")
+}
