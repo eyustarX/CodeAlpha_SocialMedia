@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feed - Social Platform</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      🌐 <span>SocialAlpha</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Feed</a>
+      <div id="nav-auth-container" style="display: flex; gap: 1rem; align-items: center;">
+        <a href="login.html">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Create Post Box (if logged in) -->
+    <section id="create-post-wrapper" class="create-post-card">
+      <form id="create-post-form">
+        <textarea 
+          id="post-content-input" 
+          class="create-post-textarea" 
+          placeholder="What's happening?" 
+          required 
+          maxlength="500"
+        ></textarea>
+        
+        <div class="create-post-footer">
+          <input 
+            type="url" 
+            id="post-image-input" 
+            class="image-input-field" 
+            placeholder="Image URL (optional)"
+          />
+          <button type="submit" id="publish-btn" class="btn">Post</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Feed Switcher (Explore vs Following) -->
+    <div class="feed-tabs">
+      <button class="feed-tab active" id="tab-explore" onclick="switchFeedTab('explore')">Explore Global</button>
+      <button class="feed-tab" id="tab-following" onclick="switchFeedTab('following')">Following</button>
+    </div>
+
+    <!-- Posts Stream -->
+    <section id="posts-stream">
+      <p style="text-align: center; color: var(--text-muted); padding: 2rem;">Loading feed...</p>
+    </section>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/feed.js"></script>
+</body>
+</html>
