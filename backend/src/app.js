@@ -1,8 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
+const postRoutes = require('./routes/postRoutes');
+const commentRoutes = require('./routes/commentRoutes');
 const { notFoundHandler, errorHandler } = require('./middleware/errorHandler');
-
 
 const app = express();
 
@@ -30,6 +31,9 @@ app.get('/api/v1', (req, res) => {
 
 // Mount Routes
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/posts', postRoutes);
+app.use('/api/v1/comments', commentRoutes);
+
 
 
 // 404 & Centralized Error Handlers (must be registered LAST)
