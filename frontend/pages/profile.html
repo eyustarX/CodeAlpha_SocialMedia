@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile - SocialAlpha</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .profile-header-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+    }
+    .profile-top {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+    .profile-avatar-lg {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #cbd5e1;
+      border: 3px solid var(--primary);
+    }
+    .profile-meta h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+    .profile-username {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .profile-bio {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+    .profile-stats {
+      display: flex;
+      gap: 2rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+    .stat-item {
+      display: flex;
+      gap: 0.4rem;
+      align-items: baseline;
+    }
+    .stat-num {
+      font-weight: 800;
+      font-size: 1.15rem;
+    }
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .btn-following {
+      background-color: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+    .btn-following:hover {
+      background-color: #fee2e2;
+      color: var(--danger);
+      border-color: var(--danger);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      🌐 <span>SocialAlpha</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Feed</a>
+      <div id="nav-auth-container" style="display: flex; gap: 1rem; align-items: center;">
+        <a href="login.html">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div style="margin-bottom: 1rem;">
+      <a href="index.html" style="color: var(--text-muted); text-decoration: none; font-weight: 600;">&larr; Back to Feed</a>
+    </div>
+
+    <!-- Profile Header -->
+    <section id="profile-container">
+      <p style="text-align: center; color: var(--text-muted); padding: 2rem;">Loading profile...</p>
+    </section>
+
+    <!-- User Posts Stream -->
+    <h2 style="font-size: 1.2rem; margin-bottom: 1rem;">Posts</h2>
+    <section id="user-posts-stream">
+      <p style="text-align: center; color: var(--text-muted); padding: 2rem;">Loading posts...</p>
+    </section>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/profile.js"></script>
+</body>
+</html>

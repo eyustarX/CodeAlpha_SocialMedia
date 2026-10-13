@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post Details - SocialAlpha</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .comments-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      margin-top: 1.5rem;
+    }
+    .comment-form {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+    }
+    .comment-input {
+      flex: 1;
+      padding: 0.65rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      outline: none;
+      font-family: inherit;
+    }
+    .comment-input:focus {
+      border-color: var(--primary);
+    }
+    .comment-card {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .comment-card:last-child {
+      border-bottom: none;
+    }
+    .comment-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .comment-body {
+      flex: 1;
+    }
+    .comment-author-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+    .comment-author-name:hover {
+      text-decoration: underline;
+    }
+    .comment-text {
+      font-size: 0.95rem;
+      margin-top: 0.2rem;
+      line-height: 1.4;
+    }
+    .comment-time {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-left: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      🌐 <span>SocialAlpha</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Feed</a>
+      <div id="nav-auth-container" style="display: flex; gap: 1rem; align-items: center;">
+        <a href="login.html">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div style="margin-bottom: 1rem;">
+      <a href="index.html" style="color: var(--text-muted); text-decoration: none; font-weight: 600;">&larr; Back to Feed</a>
+    </div>
+
+    <!-- Main Post Content -->
+    <div id="post-view-container">
+      <p style="text-align: center; color: var(--text-muted); padding: 2rem;">Loading post...</p>
+    </div>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <h2 style="font-size: 1.15rem; margin-bottom: 1.25rem;">Comments</h2>
+
+      <!-- Comment Creator Box -->
+      <form id="add-comment-form" class="comment-form">
+        <input 
+          type="text" 
+          id="comment-text-input" 
+          class="comment-input" 
+          placeholder="Write a comment..." 
+          required 
+          maxlength="300"
+        />
+        <button type="submit" id="submit-comment-btn" class="btn" style="border-radius: var(--radius); padding: 0.65rem 1.25rem;">Reply</button>
+      </form>
+
+      <!-- Comments Stream -->
+      <div id="comments-stream">
+        <p style="text-align: center; color: var(--text-muted); padding: 1.5rem;">Loading comments...</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/postDetails.js"></script>
+</body>
+</html>
