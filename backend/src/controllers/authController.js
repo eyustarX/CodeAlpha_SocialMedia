@@ -39,8 +39,8 @@ const register = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   try {
-    const { identifier, email, username, password } = req.body;
-    const userIdentifier = identifier || email || username;
+    const { identifier, email, username, emailOrUsername, password } = req.body;
+    const userIdentifier = identifier || email || username || emailOrUsername;
 
     if (!userIdentifier || !password) {
       return res.status(400).json({

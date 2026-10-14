@@ -14,6 +14,7 @@ const formatPost = (post, currentUserId) => {
     imageUrl: post.imageUrl,
     createdAt: post.createdAt,
     updatedAt: post.updatedAt,
+    authorId: post.authorId || (post.author ? post.author.id : null),
     author: post.author,
     likesCount: post._count ? post._count.likes : (post.likes ? post.likes.length : 0),
     commentsCount: post._count ? post._count.comments : (post.comments ? post.comments.length : 0),
